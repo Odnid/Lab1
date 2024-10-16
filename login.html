@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm" method="POST" action="login.php">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" name="username" required>
+            
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" required>
+            
+            <label for="otp">OTP</label>
+            <input type="text" id="otp" name="otp" required>
+
+            <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div> <!-- reCAPTCHA included here -->
+
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign up here</a>.</p> <!-- Link to signup page -->
+    </div>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script> <!-- Include reCAPTCHA script -->
+    <script src="validation.js"></script>
+</body>
+</html>

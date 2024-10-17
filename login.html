@@ -3,6 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+    <title>Login - BookHub</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For icons -->
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>Book <span class="hub" style="color:black;">hub</span></h1>
+        </div>
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="secquestion">Security Question:</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <select name="cars" id="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                      </select>
+                </div>
+            </div>
+=======
     <title>Login Form</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
@@ -18,11 +57,25 @@
             <input type="password" id="loginPassword" name="password" required>
             
             <div class="g-recaptcha" data-sitekey="6LcdymMqAAAAAOmOD6rluPMUyycgvaY1Z1PsxMbv"></div> <!-- reCAPTCHA included here -->
+>>>>>>> 64f3ae2135781bd6a40ad03d9f77ee4ecef6a5e2
 
-            <button type="submit">Login</button>
+
+            <div class="input-group">
+                <label for="secquestion">Answer:</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="text" id="squespass" name="squespass" placeholder="" required>
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn"><a href="dashboard.html">Log In</a></button>
         </form>
-        <p>Don't have an account? <a href="signup.html">Sign up here</a>.</p> <!-- Link to signup page -->
+        <div class="links">
+            <a href="signup.html">Create Account</a>
+        </div>
     </div>
+<<<<<<< HEAD
+=======
     <script>
         function onClick(e) {
           e.preventDefault();
@@ -35,5 +88,6 @@
 
 
     <script src="validation.js"></script>
+>>>>>>> 64f3ae2135781bd6a40ad03d9f77ee4ecef6a5e2
 </body>
 </html>

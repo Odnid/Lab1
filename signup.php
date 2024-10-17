@@ -1,18 +1,15 @@
 <?php
+<<<<<<< HEAD
+=======
 
 // Connect to the database
 $servername = "localhost";
 $username = "root";
 $password = ""; // Use your MySQL password
 $dbname = "user_management_system";
+>>>>>>> 64f3ae2135781bd6a40ad03d9f77ee4ecef6a5e2
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include "conn.php";
 
 
 
@@ -30,6 +27,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $security_answer_hash = password_hash($security_answer, PASSWORD_DEFAULT);
 
+<<<<<<< HEAD
+
+    // Insert the data into the `users` table
+    $sql = "INSERT INTO users (username, email, password_hash, security_question, security_answer_hash)
+            VALUES ('$username', '$email', '$password_hash', '$security_question', '$security_answer_hash')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully. You can now log in.";
+        // Optionally redirect to login page
+        header('Location: index.html');
+        exit;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+=======
+>>>>>>> 64f3ae2135781bd6a40ad03d9f77ee4ecef6a5e2
 }
 
 

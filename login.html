@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 <body>
     <div class="form-container">
@@ -16,17 +17,23 @@
             <label for="loginPassword">Password</label>
             <input type="password" id="loginPassword" name="password" required>
             
-            <label for="otp">OTP</label>
-            <input type="text" id="otp" name="otp" required>
-
-            <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div> <!-- reCAPTCHA included here -->
+            <div class="g-recaptcha" data-sitekey="6LcdymMqAAAAAOmOD6rluPMUyycgvaY1Z1PsxMbv"></div> <!-- reCAPTCHA included here -->
 
             <button type="submit">Login</button>
         </form>
         <p>Don't have an account? <a href="signup.html">Sign up here</a>.</p> <!-- Link to signup page -->
     </div>
+    <script>
+        function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6LfjwmMqAAAAAIKaASBL_BRuG4lAvTMcOOxque88', {action: 'LOGIN'});
+          });
+        }
+      </script>
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script> <!-- Include reCAPTCHA script -->
+
+
     <script src="validation.js"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
 <?php
+
+include "captcha.php";
 // Connect to the database
 $servername = "localhost";
 $username = "root";
@@ -13,7 +15,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
     // Get the form values
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -25,24 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $security_answer_hash = password_hash($security_answer, PASSWORD_DEFAULT);
 
-    // Generate an OTP secret for Google Authenticator (Using PHPGangsta/GoogleAuthenticator)
-    require 'vendor/autoload.php';
-    $g = new \PHPGangsta_GoogleAuthenticator();
-    $otp_secret = $g->createSecret(); // Create OTP secret
-
-    // Insert the data into the `users` table
-    $sql = "INSERT INTO users (username, email, password_hash, otp_secret, security_question, security_answer_hash)
-            VALUES ('$username', '$email', '$password_hash', '$otp_secret', '$security_question', '$security_answer_hash')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully. You can now log in.";
-        // Optionally redirect to login page
-        header('Location: index.html');
-        exit;
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
 }
+
 
 $conn->close();
 ?>

@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Form</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    <style>
+        .error {
+            margin-top: 5px; /* Adds some space between the input field and the error message */
+            margin-bottom: 15px; /* Adds padding to push away from the next field */
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
         <h2>Signup</h2>
-        <form id="signupForm" method="POST" action="signup.php">
+        <form id="signupForm" method="POST" action="signup.php" onsubmit="return validateSignupForm()">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
             
@@ -18,20 +27,39 @@
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
-            <div id="password-error" class="error"></div>
+            <div id="password-error" class="error"></div> <!-- Error message for password -->
 
-            <label for="security-question">Security Question</label>
-            <select id="security-question" name="security_question" required>
-                <option value="favorite-pet">What is your favorite pet?</option>
-                <option value="birth-city">What city were you born in?</option>
-            </select>
-
-            <label for="security-answer">Answer</label>
-            <input type="text" id="security-answer" name="security-answer" required>
+            <div class="g-recaptcha" data-sitekey="6LcdymMqAAAAAOmOD6rluPMUyycgvaY1Z1PsxMbv"></div> <!-- reCAPTCHA included here -->
 
             <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account? <a href="login.html">Login here</a>.</p> <!-- Link to login page -->
     </div>
+
+    <script>
+        function validateSignupForm() {
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('password-error');
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+            if (!passwordPattern.test(password)) {
+                passwordError.textContent = 'Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.';
+                return false; // Prevent form submission
+            }
+
+            passwordError.textContent = ''; // Clear error message if password is valid
+            return true; // Allow form submission
+        }
+    </script>
+
+<script>
+    function onClick(e) {
+      e.preventDefault();
+      grecaptcha.enterprise.ready(async () => {
+        const token = await grecaptcha.enterprise.execute('6LfjwmMqAAAAAIKaASBL_BRuG4lAvTMcOOxque88', {action: 'LOGIN'});
+      });
+    }
+  </script>
+
 </body>
 </html>

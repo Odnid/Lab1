@@ -3,35 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup Form</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Signup - BookHub</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For icons -->
 </head>
 <body>
-    <div class="form-container">
-        <h2>Signup</h2>
-        <form id="signupForm" method="POST" action="signup.php">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+    <div class="login-container">
+        <div class="logo">
+            <h1>Book <span class="hub" style="color:black;">hub</span></h1>
+        </div>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <div id="password-error" class="error"></div>
+        <div class="signup">
+            <h3>Signup</h3>
+        </div>
+        <form action="signup.php" method="POST">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+            </div>
 
-            <label for="security-question">Security Question</label>
-            <select id="security-question" name="security_question" required>
-                <option value="favorite-pet">What is your favorite pet?</option>
-                <option value="birth-city">What city were you born in?</option>
-            </select>
+            <div class="input-group">
+                <label for="password">Email:</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="text" id="email" name="email" placeholder="E-Mail" required>
+                </div>
+            </div>
 
-            <label for="security-answer">Answer</label>
-            <input type="text" id="security-answer" name="security-answer" required>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+            </div>
 
-            <button type="submit">Sign Up</button>
+            <div class="input-group">
+                <label for="secquestion">Security Question:</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <select name="cars" id="cars">
+                        <option value="volvo">What is your mother's maiden name?</option>
+                        <option value="saab">What was your first pet's name?</option>
+                        <option value="mercedes">What was your first school?</option>
+                      </select>
+                </div>
+            </div>
+
+
+            <div class="input-group">
+                <label for="secquestion">Answer:</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="text" id="squespass" name="squespass" placeholder="" required>
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn">Sign Up</button>
         </form>
-        <p>Already have an account? <a href="login.html">Login here</a>.</p> <!-- Link to login page -->
+        <div class="links">
+            <a href="login.html">Log In</a>
+        </div>
     </div>
 </body>
 </html>

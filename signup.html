@@ -6,6 +6,14 @@
     <title>Signup - BookHub</title>
     <link rel="stylesheet" href="login.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For icons -->
+    <style>
+        .error {
+            color: red;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
@@ -16,7 +24,7 @@
         <div class="signup">
             <h3>Signup</h3>
         </div>
-        <form action="signup.php" method="POST">
+        <form action="signup.php" method="POST" onsubmit="return validateSignupForm()">
             <div class="input-group">
                 <label for="username">Username:</label>
                 <div class="input-field">
@@ -38,18 +46,20 @@
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
                     <input type="password" id="password" name="password" placeholder="Password" required>
+                    <div id="password-error" class="error"></div> <!-- Error message for password -->
                 </div>
             </div>
 
             <div class="input-group">
                 <label for="secquestion">Security Question:</label>
+                <div class="input-field">
                     <select name="secquestion">
                         <option value="What is your mothers maiden name?">What is your mother's maiden name?</option>
                         <option value="What was your first pets name?">What was your first pet's name?</option>
                         <option value="What was your first school?">What was your first school?</option>
                     </select>
             </div>
-
+        </div>
 
             <div class="input-group">
                 <label for="secquestion">Answer:</label>

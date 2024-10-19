@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully. You can now log in.";
         // Optionally redirect to login page
-        header('Location: login.php');
+        header('Location: login.html');
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

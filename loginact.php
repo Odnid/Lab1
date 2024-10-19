@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $squespass = $_POST['squespass'];
 
     // Prepare the SQL statement to avoid SQL injection
-    $stmt = $conn->prepare("SELECT password_hash, security_answer_hash, security_question FROM users WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, password_hash, security_answer_hash, security_question FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
@@ -18,12 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if a result was returned
     if ($stmt->num_rows > 0) {
         // Bind the result to variables
-        $stmt->bind_result($hashed_password, $hashed_squespass, $db_secquestion);
+        $stmt->bind_result($user_id, $hashed_password, $hashed_squespass, $db_secquestion);
         $stmt->fetch();
 
         // Verify the security question, password, and the security answer
         if ($secquestion === $db_secquestion && password_verify($password, $hashed_password) && password_verify($squespass, $hashed_squespass)) {
-            header("Location: dashboard.html");
+            // Store user information in session
+            $_SESSION['user_id'] = $user_id;
+            $_SESSION['username'] = $username;
+            $_SESSION['logged_in'] = true;
+
+            header("Location: dashboard.php");
             exit();
         } else {
             echo 'Invalid password, security question, or security answer.';
@@ -31,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         echo 'Username not found.';
+        header("Refresh: 3; URL='login.html'");
     }
 
     // Close the statement
